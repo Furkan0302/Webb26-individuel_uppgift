@@ -1,29 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Kontakta.css">
-    <title>Document</title>
+    <title>Kontakta oss</title>
 </head>
 <body>
     <header>
-        <h2>
-            Kontakta oss 
-        </h2>
-        <nav>
-			<a href="Tassen.html">Huvudmeny</a>
-			<a href="Tassen_Bokade_tider.html">Boka Tid</a>
-		</nav>   
+        <div class="header-container">
+            <h1 class="logo">Hundpensionatet Tassen</h1>
+            <nav>
+                <ul>
+                    <li><a href="Tassen.html">Huvudmeny</a></li>
+                    <li><a href="Tassen_Bokade_tider.html">Boka Tid</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <h3>
-        Personal
-    </h3>
-    <hr>
-    <h3>
-        Kontakt Info
-    </h3>
-    
 
+    <main>
+        <section id="kontakt" class="section-block">
+            <h2>Kontakt</h2>
+            <div class="kontakt-enkelt">
+                <p><strong>Adress:</strong> Hagvägen 4, Stan</p>
+                <p><strong>Telefon:</strong> <a href="tel:0300123456">0300-12 34 56</a></p>
+                <p><strong>E-post:</strong> <a href="mailto:hej@tassen.se">hej@tassen.se</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Hundpensionatet Tassen · Hagvägen 4 · 0300-12 34 56 · hej@tassen.se</p>
+    </footer>
+
+    <script src="app.js"></script>
+        
 </body>
 </html>

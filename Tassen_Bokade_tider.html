@@ -1,40 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Tassen_Bokade_tider.css">
-    <title>Document</title>
+    <title>Boka Tid</title>
 </head>
-<body>
-    <header>
-        <h2>
-            Boka Tid 
-        </h2>
-        <nav>
-			<a href="Tassen.html">Huvudmeny</a>
-			<a href="kontakt">Kontakta</a>
-		</nav>   
+    <body>
+        <header>
+        <div class="header-container">
+            <h1 class="logo">Hundpensionatet Tassen</h1>
+            <nav>
+                <ul>
+                    <li><a href="Tassen.html">Huvudmeny</a></li>
+                    <li><a href="Kontakta.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <hr>
-    <article class="Boknings-kort">
-        <p>
-            Namn:
-        </p>
-        <p>
-            Hund: 
-        </p>
-        <p> 
-            Datum:
-        </p> 
-        <p>
-            Tid:
-        </p>
-        <button class="Avboka-Tiden">
-            <strong>
-                Avboka
-            </strong> 
-        </button>
-    </article>
+
+    <main>
+        <section id="boka" class="section-block">
+            <h2>Boka Tid</h2>
+
+            <p id="oppet-status" style="margin-bottom: 15px; font-weight: bold; color: #2e4a3b;"></p>
+
+            <form id="boknings-form">
+                <div class="form-group">
+                    <label for="hund-namn">Vald hund:</label>
+                    <input type="text" id="hund-namn" placeholder="Klicka på en hund nedan..." readonly required>
+                </div>
+
+                <div class="form-group">
+                    <label for="boknings-typ">Välj typ av bokning:</label>
+                    <select id="boknings-typ" required>
+                        <option value="">-- Välj alternativ --</option>
+                        <option value="heldag">Hel dag</option>
+                        <option value="halvdag">Halv dag</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="boknings-datum">Datum:</label>
+                    <input type="date" id="boknings-datum" required>
+                </div>
+
+       
+                <button type="submit" class="submit-btn">Bekräfta bokning</button>
+            </form>
+
+            <div class="form-group" style="margin-top: 25px;">
+                <h3>Dina sparade bokningar</h3>
+                <p class="intro-text">Din förfrågan sparas i din webbläsare, vi ringer upp dig.</p>
+                <ul id="boknings-lista" style="list-style: none; padding: 0;"></ul>
+            </div>
+        </section>
+
+
+            <p id="boknings-meddelande" class="svar-meddelande"></p>
+        </section>
+
+            <section id="hund-sektion" class="section-block">
+                <h3>Våra Hundar</h3>
+
+                <div class="form-group" style="margin-top: 25px;">
+                    <h3>Dina sparade bokningar</h3>
+                    <p class="intro-text">Din förfrågan sparas i din webbläsare, vi ringer upp dig.</p>
+                    <ul id="boknings-lista"></ul>
+                </div>
+
+                <div id="hund-galleriet">
+
+                    <div class="hund-kort" data-hund="Cavalier">
+                        <img src="Cavalier-King-Charles-Spaniel-1-1024x714.jpg" alt="Hund Cavalier" class="hund-bild">
+                        <h4>Cavalier</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Cavalier</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Boxer">
+                        <img src="boxer_top.webp" alt="Hund Boxer" class="hund-bild">
+                        <h4>Boxer</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Boxer</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Bullmastiff">
+                        <img src="side-photo-bullmastiff-nive-eyes-600nw-2086241974.webp" alt="Hund Bullmastiff" class="hund-bild">
+                        <h4>Bullmastiff</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Bullmastiff</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Boston-Terrier">
+                        <img src="Boston_Terrier.jpg" alt="Hund Boston-Terrier" class="hund-bild">
+                        <h4>Boston Terrier</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Boston Terrier</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Belgian-Ciobanesc">
+                        <img src="Ciobanesc-belgian-de-Tervuren-caracteristici-rasa-caine-768x480.jpg" alt="Hund Belgian-Ciobanesc" class="hund-bild">
+                        <h4>Belgian Ciobanesc</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Belgian Ciobanesc</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Australian-Shepherd">
+                        <img src="Australian-Shepherd-with-white-markings-and-tan-points-360x450.jpg" alt="Hund Australian-Shepherd" class="hund-bild">
+                        <h4>Australian Shepherd</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Australian Shepherd</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Chien-Akita">
+                        <img src="chien_akita.jpg" alt="Hund Chien-Akita" class="hund-bild">
+                        <h4>Chien Akita</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Chien Akita</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Aidi">
+                        <img src="aidi-dog-852683.jpg" alt="Hund Aidi" class="hund-bild">
+                        <h4>Aidi</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Aidi</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Alpenlaendische-Dachsbracke">
+                        <img src="alpenlaendische-dachsbracke.jpg" alt="Hund Alpenlaendische-Dachsbracke" class="hund-bild">
+                        <h4>Alpenlaendische Dachsbracke</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Alpenlaendische Dachsbracke</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Alaskan-Malamute">
+                        <img src="4-scaled.webp" alt="Hund Alaskan-Malamute" class="hund-bild">
+                        <h4>Alaskan Malamute</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Alaskan Malamute</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Bichon-Frise">
+                        <img src="f3521e4890233ab832140cd1659bcafe.jpg" alt="Hund Bichon-Frise" class="hund-bild">
+                        <h4>Bichon Frise</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Bichon Frise</button>
+                    </div>
+
+                    <div class="hund-kort" data-hund="Collie-Långhårig">
+                        <img src="IMG_2037Edit-2-2400x1752.webp" alt="Hund Collie-Långhårig" class="hund-bild">
+                        <h4>Collie Långhårig</h4>
+                        <p>Tillgänglig: Mån-Lör</p>
+                        <button type="button" class="boka-hund-btn">Boka Collie Långhårig</button>
+                    </div>
+
+                </div>
+            </section>
+    </main>
+
+        <footer>
+            <p>&copy; Hundpensionatet Tassen · Hagvägen 4 · 0300-12 34 56 · hej@tassen.se</p>
+        </footer>
+
+        <script src="boka.js"></script>
+   
 </body>
 </html>

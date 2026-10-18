@@ -1,50 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Tassen.css">
-    <title>Document</title>
+    <title>Hundpensionatet Tassen</title>
 </head>
 <body>
     <header>
-            <h1>
-                Hundpensionatet Tassen
-            </h1>
-        	<nav>
-			    <a href="Tassen_Bokade_tider.html">Boka Tid</a>
-			    <a href="kontakt">Kontakta</a>
-		    </nav>   
+        <div class="header-container">
+            <h1 class="logo">Hundpensionatet Tassen</h1>
+            <nav>
+                <ul>
+                    <li><a href="#om-oss">Om oss</a></li>
+                    <li><a href="#tjanster">Tjänster & Priser</a></li>
+                    <li><a href="#oppettider">Öppettider</a></li>
+                    <li><a href="Tassen_Bokade_tider.html">Boka Tid</a></li>
+                    <li><a href="Kontakta.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <hr>
-    <main>  
-        <h3>
-            Öppetider
-        </h3>
-        <p>
-            <em>Måndag</em>: 07.00 - 18.00         
-        </p>
-        <p>
-            <em>Tisdag</em>: 07.00 - 18.00         
-        </p>
-        <p>
-            <em>Onsdag</em>: 07.00 - 18.00         
-        </p>
-        <p>
-            <em>Torsdag</em>: 07.00 - 18.00         
-        </p>
-        <p>
-            <em>Fredag</em>: 07.00 - 18.00         
-        </p>
-        <p>
-            <em>Lördag</em>: 09.00 - 14.00         
-        </p>
-        <p>
-            <em>Söndag</em>: <strong> Stängt </strong>                 
-        </p>
+
+    <main>
+        <section id="status-panel" class="status-box">
+            <div class="status-content">
+                <p id="live-datum" class="datum-text">Laddar datum...</p>
+                <p id="live-klocka" class="klocka-text">00:00:00</p>
+                <div id="oppet-indicator" class="status-tag">
+                    <span id="status-text">Räknar ut status...</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="om-oss" class="section-block">
+            <h2>Om Hundpensionatet Tassen</h2>
+            <p class="intro-text">
+                Välkommen till Tassen! Vi är ett personligt hunddagis och pensionat beläget strax utanför stan. 
+                Hos oss får din hund en trygg vardag med stor inhägnad utegård, härliga promenader och massor av bus och kärlek.
+            </p>
+
+            <h3>Vilka vi är</h3>
+            <div class="personal-grid">
+                <div class="personal-kort">
+                    <h4>Pelle</h4>
+                    <p><strong>Ägare & Hundskötare</strong></p>
+                    <p>Har drivit Tassen sedan starten och brinner för hundars beteende och utomhusaktiviteter.</p>
+                </div>
+                <div class="personal-kort">
+                    <h4>Nina</h4>
+                    <p><strong>Hundskötare</strong></p>
+                    <p>Utbildad hundinstruktör med stort hjärta för alla hundraser och personligheter.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tjanster" class="section-block">
+            <h2>Våra Tjänster & Priser</h2>
+            <div class="tjanster-grid">
+                <div class="tjanst-kort">
+                    <h3>Hunddagis Heldag</h3>
+                    <p>En hel dag fylld av lek, vila och utomhusaktiviteter anpassade efter din hunds behov.</p>
+                    <p class="pris">320 kr / dag</p>
+                </div>
+                <div class="tjanst-kort">
+                    <h3>Hunddagis Halvdag</h3>
+                    <p>Perfekt för dig som behöver passning några timmar på förmiddagen eller eftermiddagen.</p>
+                    <p class="pris">190 kr / dag</p>
+                </div>
+                <div class="tjanst-kort">
+                    <h3>Hundpensionat</h3>
+                    <p>Övernattning i trygg och hemmastadd miljö när du är bortrest. Inkluderar mat och omvårdnad.</p>
+                    <p class="pris">450 kr / natt</p>
+                </div>
+                <div class="tjanst-kort">
+                    <h3>Klippkort Dagis</h3>
+                    <p>Flexibelt klippkort på 10 dagar som kan nyttjas när det passar er under terminen.</p>
+                    <p class="pris">2 800 kr (10 dgr)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="oppettider" class="section-block">
+            <h2>Ordinarie Öppettider</h2>
+            <ul class="oppettider-lista">
+                <li><span>Måndag – Fredag:</span> <span>07:00 – 18:00</span></li>
+                <li><span>Lördag:</span> <span>09:00 – 14:00</span></li>
+                <li><span>Söndag:</span> <span>Stängt</span></li>
+            </ul>
+        </section>
+
+        <section id="boka" class="section-block">
+            <h2>Bokningsförfrågan</h2>
+            <p>Din förfrågan sparas lokalt i din webbläsare, så återkommer vi per telefon.</p>
+            <!-- Bokningsformulär läggs till här i Del 2 -->
+        </section>
     </main>
-    <p>
-        
-    </p>
+
+    <footer id="kontakt">
+        <div class="footer-content">
+            <h3>Hundpensionatet Tassen</h3>
+            <p><strong>Adress:</strong> Hagvägen 4</p>
+            <p><strong>Telefon:</strong> 0300-12 34 56</p>
+            <p><strong>E-post:</strong> hej@tassen.se</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>

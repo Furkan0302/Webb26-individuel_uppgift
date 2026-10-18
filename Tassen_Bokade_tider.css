@@ -1,56 +1,180 @@
-.Boknings-kort {
-    max-width: 250px;
-    line-height: 1.5rem;
-    background-color: whitesmoke;
-    margin-bottom: auto;
-    padding: 3rem;
-    border: 5px solid black;
-    border-radius: 8px;
-    margin-top: 60px;
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
     display: block;
-    margin-left: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.Avboka-Tiden {
-    background-color: red;
-    max-width: 100px;
-    line-height: 0.3rem;
-    margin-bottom: auto;
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    background-color: #2e4a3b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    padding: 0.3rem;
-    border: 2px solid black;
+    width: 100%;
+    margin-top: 10px;
 }
 
-.Boknings-kort h2 {
-    display: inline-block;
-    border-bottom: 1px solid black;
-    padding-bottom: 3px;
+.submit-btn:hover {
+    background-color: #1b2e24;
+}
+
+#hund-galleriet {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.hund-kort {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.hund-bild {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.boka-hund-btn {
+    background-color: #2e4a3b;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.boka-hund-btn:hover {
+    background-color: #1b2e24;
+}
+
+.svar-meddelande {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #28a745;
+    text-align: center;
 }
 
 header {
+    background-color: #2e4a3b;
+    color: #ffffff;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-height: 60px;
-    margin-left: 20px;
-    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
 }
 
 nav a {
+    color: #ffffff;
     text-decoration: none;
-    margin-left: 20px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: whitesmoke;
-    max-width: 120px;
-    line-height: 0.6rem;
-    margin-bottom: auto;
-    cursor: pointer;
-    padding: 0.6rem;
-    border: 2px solid black;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.2s ease;
 }
 
-nav {
+nav a:hover {
+    text-decoration: underline;
+    color: #a3d9b1;
+}
+
+.kontakt-enkelt p {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.kontakt-enkelt a {
+    color: #2e4a3b;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.kontakt-enkelt a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #1b2e24;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* Styling för listan med sparade bokningar */
+#boknings-lista li {
+    background: #f4f4f4;
+    padding: 10px 15px;
+    margin-top: 8px;
+    border-radius: 5px;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ta-bort-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.ta-bort-btn:hover {
+    background-color: #c9302c;
 }
