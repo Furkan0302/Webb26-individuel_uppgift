@@ -1,129 +1,127 @@
-class Bokningslista {
-    constructor() {
-        // Läs in från localStorage vid start eller skapa tom array
-        this.bokningar = JSON.parse(localStorage.getItem("tassenBokningar")) || [];
-    }
+const hundGalleriet = document.querySelector("#hund-galleriet");
+const valdHundInfo = document.querySelector("#vald-hund-info");
+const form = document.getElementById("form");
+const namnInput = document.getElementById("namn");
+const typSelect = document.getElementById("boknings-typ");
+const datumInput = document.getElementById("boknings-datum");
+const fel = document.getElementById("fel");
+const bekraftelse = document.getElementById("bekraftelse");
+const upptagnaLista = document.getElementById("upptagna-tider-lista");
 
-    laggTill(hund, typ, datum) {
-        const nyBokning = {
-            id: Date.now(),
-            hund: hund,
-            typ: typ,
-            datum: datum
-        };
-        this.bokningar.push(nyBokning);
-        this.spara();
-    }
+let valdHund = "";
+const NYCKEL = "tassenBokningar";
 
-    taBort(id) {
-        this.bokningar = this.bokningar.filter(b => b.id !== id);
-        this.spara();
-    }
+let bokningar = laddaBokningar();
 
-    spara() {
-        localStorage.setItem("tassenBokningar", JSON.stringify(this.bokningar));
+function laddaBokningar() {
+    try {
+        const data = JSON.parse(localStorage.getItem(NYCKEL));
+        return Array.isArray(data) ? data : [];
+    } catch {
+        return [];
     }
 }
 
-// Skapa instans av klassen med 'new'
-const minBokningshanterare = new Bokningslista();
+function sparaBokningar() {
+    localStorage.setItem(NYCKEL, JSON.stringify(bokningar));
+}
 
-// === RENDERINGSFUNKTION ===
-function renderaBokningar() {
-    const listaEl = document.querySelector("#boknings-lista");
-    if (!listaEl) return;
-
-    listaEl.innerHTML = "";
-
-    if (minBokningshanterare.bokningar.length === 0) {
-        listaEl.innerHTML = "<li><em>Inga sparade bokningar ännu.</em></li>";
-        return;
-    }
-
-    minBokningshanterare.bokningar.forEach(b => {
-        const li = document.createElement("li");
-        li.style.cssText = "display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;";
-        li.innerHTML = `
-            <span><strong>${b.hund}</strong> (${b.typ}) - ${b.datum}</span>
-            <button class="ta-bort-btn" data-id="${b.id}" style="background:#dc3545; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Avboka</button>
-        `;
-        listaEl.appendChild(li);
+if (hundGalleriet) {
+    hundGalleriet.addEventListener("click", (e) => {
+        if (e.target.classList.contains("boka-hund-btn")) {
+            const kort = e.target.closest(".hund-kort");
+            if (kort) {
+                valdHund = kort.dataset.hund;
+                valdHundInfo.textContent = `Vald hund: ${valdHund}`;
+                visaUpptagnaDatum();
+            }
+        }
     });
 }
 
-// === DEL 1: ÖPPET JUST NU & KLOCKA ===
-function uppdateraKlocka() {
-    const statusEl = document.querySelector("#oppet-status");
-    if (!statusEl) return;
+function visaUpptagnaDatum() {
+    if (!upptagnaLista) return;
+    upptagnaLista.innerHTML = "";
 
-    const nu = new Date();
-    const timmar = String(nu.getHours()).padStart(2, '0');
-    const minuter = String(nu.getMinutes()).padStart(2, '0');
-    const sekunder = String(nu.getSeconds()).padStart(2, '0');
-    const dag = nu.getDay(); // 0 = söndag, 1 = måndag...
+    const hundBokningar = bokningar.filter(b => b.hund === valdHund);
 
-    let statusText = "Stängt just nu";
-    if (dag >= 1 && dag <= 5 && nu.getHours() >= 7 && nu.getHours() < 18) {
-        statusText = "Öppet just nu";
-    } else if (dag === 6 && nu.getHours() >= 9 && nu.getHours() < 14) {
-        statusText = "Öppet just nu";
+    if (hundBokningar.length === 0) {
+        upptagnaLista.innerHTML = "<li><em>Inga bokningar än för denna hund.</em></li>";
+        return;
     }
 
-    statusEl.textContent = `Klockan är ${timmar}:${minuter}:${sekunder} – ${statusText}`;
+    hundBokningar.forEach(b => {
+        const originalIndex = bokningar.indexOf(b);
+
+        const li = document.createElement("li");
+        li.style.cssText = "background: #f4f4f4; padding: 8px; margin-top: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;";
+        
+        li.innerHTML = `
+            <span>📅 ${b.datum} (${b.typ}) – Bokad av ${b.namn}</span>
+            <button class="ta-bort-btn" data-index="${originalIndex}" style="background-color: #d9534f; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: bold;">Avboka</button>
+        `;
+
+        upptagnaLista.appendChild(li);
+    });
 }
 
-// === DOM CONTENT LOADED ===
-document.addEventListener("DOMContentLoaded", () => {
-    // Starta klockan
-    uppdateraKlocka();
-    setInterval(uppdateraKlocka, 1000);
-
-    // Rendera sparade bokningar vid start
-    renderaBokningar();
-
-    const hundGalleriet = document.querySelector("#hund-galleriet");
-    const hundNamnInput = document.querySelector("#hund-namn");
-    const bokningsForm = document.querySelector("#boknings-form");
-    const listaEl = document.querySelector("#boknings-lista");
-
-    // 1. Klicka på hund i galleriet
-    if (hundGalleriet) {
-        hundGalleriet.addEventListener("click", (e) => {
-            if (e.target.classList.contains("boka-hund-btn")) {
-                const kort = e.target.closest(".hund-kort");
-                if (kort && hundNamnInput) {
-                    hundNamnInput.value = kort.dataset.hund;
-                    document.querySelector("#boka").scrollIntoView({ behavior: "smooth" });
-                }
+if (upptagnaLista) {
+    upptagnaLista.addEventListener("click", (e) => {
+        if (e.target.classList.contains("ta-bort-btn")) {
+            const indexAttTaBort = parseInt(e.target.dataset.index);
+            
+            bokningar.splice(indexAttTaBort, 1);
+            
+            sparaBokningar();
+            visaUpptagnaDatum(); 
+            
+            if (bekraftelse) {
+                bekraftelse.textContent = "Bokningen har avbokats och tagits bort!";
+                bekraftelse.style.color = "orange";
             }
-        });
-    }
+        }
+    });
+}
 
-    // 2. Skicka formulär & spara i localStorage via klassen
-    if (bokningsForm) {
-        bokningsForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+if (form) {
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-            const hund = hundNamnInput.value.trim();
-            const typ = document.querySelector("#boknings-typ").value;
-            const datum = document.querySelector("#boknings-datum").value;
+        const namn = namnInput.value.trim();
+        const typ = typSelect.value;
+        const datum = datumInput.value;
 
-            if (hund && typ && datum) {
-                minBokningshanterare.laggTill(hund, typ, datum);
-                renderaBokningar();
-                bokningsForm.reset();
-            }
-        });
-    }
+        if (!valdHund) {
+            fel.textContent = "Du måste välja en hund i galleriet först!";
+            if (bekraftelse) bekraftelse.textContent = "";
+            return;
+        }
 
-    // 3. Ta bort bokning (Event Delegation)
-    if (listaEl) {
-        listaEl.addEventListener("click", (e) => {
-            if (e.target.classList.contains("ta-bort-btn")) {
-                const id = Number(e.target.dataset.id);
-                minBokningshanterare.taBort(id);
-                renderaBokningar();
-            }
-        });
-    }
-});
+        const redanBokad = bokningar.some(b => b.hund === valdHund && b.datum === datum);
+        if (redanBokad) {
+            fel.textContent = `${valdHund} är redan bokad den ${datum}. Välj ett annat datum.`;
+            if (bekraftelse) bekraftelse.textContent = "";
+            return;
+        }
+
+        const nyBokning = {
+            id: Date.now().toString(),
+            hund: valdHund,
+            namn: namn,
+            typ: typ,
+            datum: datum
+        };
+
+        bokningar.push(nyBokning);
+        sparaBokningar();
+
+        bekraftelse.textContent = `Tack ${namn}! Du har bokat ${valdHund} (${typ}) den ${datum}.`;
+        bekraftelse.style.color = "green";
+        fel.textContent = "";
+        
+        form.reset();
+        valdHund = "";
+        valdHundInfo.textContent = "Vald hund: Ingen vald ännu";
+        visaUpptagnaDatum();
+    });
+}

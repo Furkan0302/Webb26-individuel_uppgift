@@ -42,3 +42,38 @@ function uppdateraKlockaOchStatus() {
 
 uppdateraKlockaOchStatus();
 setInterval(uppdateraKlockaOchStatus, 1000);
+
+const omdomen = [
+    { text: "Tassen är fantastiskt! Älskar att vara här.", forfattare: "– Anna & Buster" },
+    { text: "Proffsig personal och superfin utegård. Kan varmt rekommenderas!", forfattare: "– Marcus G." },
+    { text: "Tryggt och enkelt. Det känns alltid bra att kunna vara med hundarna Pelle och Nina.", forfattare: "– Sofia & Bella" },
+    { text: "Bästa hunddagiset i stan!.", forfattare: "– Johan K." },
+    { text: "Fantastisk service och underbar personal. 5 av 5 stjärnor!", forfattare: "– Carina M." }
+];
+
+let senasteIndex = -1; 
+
+function visaSlumpatOmdome() {
+    let nyttIndex;
+    
+    do {
+        nyttIndex = Math.floor(Math.random() * omdomen.length);
+    } while (nyttIndex === senasteIndex && omdomen.length > 1);
+
+    senasteIndex = nyttIndex;
+    const valtoOmdome = omdomen[nyttIndex];
+
+    const textEl = document.querySelector("#omdome-text");
+    const forfattareEl = document.querySelector("#omdome-forfattare");
+
+    if (textEl && forfattareEl) {
+        textEl.textContent = `"${valtoOmdome.text}"`;
+        forfattareEl.textContent = valtoOmdome.forfattare;
+    }
+}
+
+const omdomeBtn = document.querySelector("#nytt-omdome-btn");
+if (omdomeBtn) {
+    omdomeBtn.addEventListener("click", visaSlumpatOmdome);
+    visaSlumpatOmdome();
+}
